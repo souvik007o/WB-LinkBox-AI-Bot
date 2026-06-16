@@ -2,14 +2,22 @@ import urllib.request
 import xml.etree.ElementTree as ET
 import json
 import re
+import os # Add this import at the top
 
 # ==========================================
-# CONFIGURATION
+# SECURE CONFIGURATION
 # ==========================================
-# IMPORTANT: Change this to your InfinityFree domain!
 YOUR_PORTAL_URL = "http://YOUR_WEBSITE_DOMAIN.infinityfreeapp.com/auth.php" 
-AI_SECRET_TOKEN = "WBLINKBOX_AI_SECURE_TRUST_2026"
-GEMINI_API_KEY = "AQ.Ab8RN6Lcy2TPtoSXWw1f5e93zn5jnHb5XtiaXBHLsvUA9kOPkw"
+
+# Pulling secrets securely from GitHub Environment Variables!
+AI_SECRET_TOKEN = os.environ.get("AI_SECRET_TOKEN")
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
+
+if not GEMINI_API_KEY or not AI_SECRET_TOKEN:
+    raise ValueError("🚨 CRITICAL: Missing API Keys in Environment Variables!")
+
+
+
 
 def fetch_latest_news():
     print("🌍 Scanning Google News for West Bengal Gov updates...")
