@@ -1,0 +1,22 @@
+name: Daily WB LINKBOX AI Agent
+
+on:
+  schedule:
+    # Runs every day at 12:00 AM UTC (5:30 AM IST)
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Allows you to click a button to test it manually!
+
+jobs:
+  run-agent:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Run AI Automation Script
+        run: python ai_agent.py
