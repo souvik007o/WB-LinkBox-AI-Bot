@@ -113,7 +113,7 @@ def publish_to_portal(ai_data):
     # THIS IS THE SECRET TOKEN BYPASSING NORMAL LOGINS
     req = urllib.request.Request(url, data=req_data, headers={
         'Content-Type': 'application/json',
-        'X_AI_TOKEN': AI_SECRET_TOKEN
+        'X-AI-TOKEN': AI_SECRET_TOKEN
     })
     
     try:
