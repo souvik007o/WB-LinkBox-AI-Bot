@@ -2,9 +2,8 @@ name: Daily WB LINKBOX AI Agent
 
 on:
   schedule:
-    # Runs every day at 12:00 AM UTC (5:30 AM IST)
     - cron: '0 0 * * *'
-  workflow_dispatch: # Allows you to click a button to test it manually!
+  workflow_dispatch:
 
 jobs:
   run-agent:
@@ -19,4 +18,7 @@ jobs:
           python-version: '3.10'
 
       - name: Run AI Automation Script
+        env: # Inject the secrets securely here!
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          AI_SECRET_TOKEN: ${{ secrets.AI_SECRET_TOKEN }}
         run: python ai_agent.py
